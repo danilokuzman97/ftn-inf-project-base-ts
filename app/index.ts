@@ -1,4 +1,4 @@
-import { UserService } from "./services/userService";
+import { UserService } from "./services/user.service";
 
 const userService = new UserService()
 
@@ -23,7 +23,7 @@ function renderData(): void{
 
         //kreiramo celiju za korisnicko ime
         const cell2 = document.createElement('td');
-        cell2.textContent = users[i].username;
+        cell2.textContent = users[i].userName;
         newRow.appendChild(cell2);
 
         //kreiramo celiju za ime korisnika
@@ -33,7 +33,7 @@ function renderData(): void{
 
         //kreiramo celiju za prezime korisnika
         const cell4 = document.createElement('td');
-        cell3.textContent = users[i].surname;
+        cell4.textContent = users[i].surname;
         newRow.appendChild(cell4);
 
         //kreiramo celiju za datum rodjenja
@@ -51,7 +51,7 @@ function renderData(): void{
       }
     })
     .catch(error =>{
-      console.error(error.messahe);
+      console.error(error.message);
     });
 }
 renderData();
