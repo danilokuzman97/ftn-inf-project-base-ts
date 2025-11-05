@@ -47,6 +47,16 @@ function renderData(): void{
         cell5.textContent = formatDate;
         newRow.appendChild(cell5);
 
+        const cell6 = document.createElement('td');
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        const userId = users[i].id;
+        editBtn.onclick = function(){
+          window.location.href = `./usersForm/userForm.html?id=${userId}`
+        }
+        cell6.appendChild(editBtn);
+        newRow.appendChild(cell6);
+
         table.appendChild(newRow);
       }
     })
