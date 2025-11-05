@@ -1,3 +1,4 @@
+
 import{User} from "../models/user"
 import { userForm } from "../models/userFormat";
 
@@ -62,6 +63,21 @@ export class UserService{
       })
       .then((user: User) =>{
         return user;
+      })
+      .catch(error =>{
+        console.error(error.status)
+        throw error
+      });
+  }
+
+  delete(userId: string): Promise<void>{
+    return fetch(`${this.apiUrl}/${userId}`, {method: 'DELETE'})
+      .then(response =>{
+        if(!response.ok){
+          return response.text().then(errorMessage =>{
+            throw{status: response.status, message: errorMessage}
+          })
+        }
       })
       .catch(error =>{
         console.error(error.status)

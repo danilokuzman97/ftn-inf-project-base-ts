@@ -57,6 +57,22 @@ function renderData(): void{
         cell6.appendChild(editBtn);
         newRow.appendChild(cell6);
 
+        const cell7 = document.createElement('td');
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Remove';
+
+        deleteBtn.onclick = function(){
+          userService.delete(userId.toString())
+            .then(() => {
+              window.location.reload();
+            })
+            .catch(error =>{
+              console.error(error.status, error.text);
+            });
+        };
+        cell7.appendChild(deleteBtn);
+        newRow.appendChild(cell7);
+
         table.appendChild(newRow);
       }
     })
