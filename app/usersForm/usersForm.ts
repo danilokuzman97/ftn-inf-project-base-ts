@@ -26,19 +26,29 @@ function initializeForm(): void{
   }
 }
 
-function submit(){
+
+function submit(): void{
+
+
     const userName = (document.querySelector('#userName') as HTMLInputElement).value
     const name = (document.querySelector('#name') as HTMLInputElement).value
     const surname = (document.querySelector('#surname') as HTMLInputElement).value
     const date = (document.querySelector('#birthDate') as HTMLInputElement).value
     const birthDate = new Date(date)
 
+    const button = document.querySelector('#submit') as HTMLButtonElement;
+    const message = document.querySelector("#message") as HTMLElement;
+
     if(!userName || !name || !surname || !date){
       alert("All fields are required.");
-      return
+      return;
     }
 
-    const formData: userForm = {userName, name, surname, birthDate}
+    message.textContent = "Kreiranje korisnika...";
+    button.disabled = true;
+
+    setTimeout(() =>{
+        const formData: userForm = {userName, name, surname, birthDate}
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -49,6 +59,7 @@ function submit(){
                 window.location.href = '../index.html'
             }).catch(error => {
                 console.error(error.status, error.text);
+                button.disabled = false;
             })
     } else {
 
@@ -57,8 +68,11 @@ function submit(){
                 window.location.href = '../index.html'
             }).catch(error => {
                 console.error(error.status, error.text);
-            })
+                button.disabled = false;
+            });
     }
-}
+}, 2000);
+    }
+    
 
 document.addEventListener("DOMContentLoaded", initializeForm)

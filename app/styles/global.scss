@@ -1,4 +1,4 @@
-$primary-color: #3294a5;
+$primary-color: #618975;
 $button-color: #000000;
 
 body {
@@ -33,4 +33,32 @@ button {
   border: none;
   padding: 8px 12px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover{
+    $accent-color: #2f7231;
+    background-color: lighten($accent-color, 10%);
+    transform: scale(1.10);
+  }
+}
+
+.tooltiptext {
+  width: 130px;
+  background-color: rgb(191, 255, 195);
+  color: #000000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+#tooltip:hover .tooltiptext {
+  opacity: 1;
+}
+
+#submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
